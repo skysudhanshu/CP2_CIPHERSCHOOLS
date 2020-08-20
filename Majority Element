@@ -1,0 +1,24 @@
+class Solution {
+    public int majorityElement(int[] nums) {
+        int i=0,j=nums.length-1,c=0;
+        int m=nums[0];
+        for(i=0;i<nums.length;i++)
+        {
+          if(nums[i]==m)
+          {
+              c++;
+          }
+            else
+            {
+                c--;
+            }
+            if(c==0)
+            {
+                m=nums[i];
+                c++;
+            }
+        }
+        return m;
+        
+    }
+}

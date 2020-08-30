@@ -1,0 +1,15 @@
+class Solution {
+public:
+    void traverse( TreeNode* root, vector<int> &res, int level){
+        if( root == NULL) return;
+        if(res.size() == level) res.push_back( root -> val);
+        traverse(root -> right, res,++level);
+        traverse(root -> left, res,level++);
+        return;
+    }
+    vector<int> rightSideView(TreeNode* root) {
+        vector<int> ans;
+        traverse(root, ans,0);
+        return ans;
+    }
+};

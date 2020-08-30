@@ -1,0 +1,29 @@
+class Solution {
+    unordered_map<char,string> m;
+public:
+    vector<string> letterCombinations(string digits) {
+        m['2']="abc";
+        m['3']="def";
+        m['4']="ghi";
+        m['5']="jkl";
+        m['6']="mno";
+        m['7']="pqrs";
+        m['8']="tuv";
+        m['9']="wxyz";
+        vector<string> res;
+        string temp="";
+        if(digits.size()>0)
+        solve(res,temp,digits,0);
+        return res;
+    }
+    void solve(vector<string>& res,string temp,string dig,int start){
+        if(temp.size() == dig.size()){
+            res.push_back(temp);
+            return;
+        }
+        string tp = m[dig[start]];
+        for(int i=0;i<tp.size();i++){
+            solve(res,temp+tp[i],dig,start+1);
+        }
+    }
+};

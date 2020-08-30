@@ -1,0 +1,30 @@
+class Solution {
+public:
+    string minWindow(string s, string t) {
+         unordered_map<char, int> um;
+        for(char ch: t)
+            um[ch]--;
+        int lt(0), rt(0), cntChars(0);
+        string ans{""};
+        while(rt < s.size())
+        {
+            if(um[s[rt]] < 0)
+                cntChars++;
+            
+            um[s[rt]]++;
+            while(cntChars == t.size())
+            {
+                if(rt-lt+1 < ans.size() || !ans.size())
+                    ans = s.substr(lt, rt-lt+1);
+                
+                if(!um[s[lt]])
+                    cntChars--;
+                
+                um[s[lt++]]--;
+            }
+            rt++;
+        }
+        return ans;
+        
+    }
+};

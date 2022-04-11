@@ -1,0 +1,47 @@
+
+public class Main
+{
+    public static void swap(int a[], int i, int j){
+        a[i]= a[i]+a[j];
+        a[j]= a[i]-a[j];
+        a[i]= a[i]-a[j];
+    }
+     public static int partition(int a[], int l, int h){
+        
+        int i=l;
+        int pivot= a[l];
+        int j=h;
+      
+        while (i<j){
+            
+            while(a[i] <= pivot && i<h) i++;
+            
+            while(a[j] >= pivot && j>l) j--;
+            
+            if(i<j)
+                swap(a, i, j);
+        }
+        
+        if(j!=l)    
+            swap(a, j, l);
+        
+        return j;
+    }
+    public static void quikSort(int a[],int l,int r)
+    {
+        if(l<r)
+        {
+            int pivot=partition(a,l,r);
+            quikSort(a,l,pivot-1);
+            quikSort(a,pivot+1,r);
+        }
+    }
+	public static void main(String[] args) {
+	int a[]={7,4,2,31,4,6,245,3};
+    quikSort(a,0,7);
+    for(int i=0;i<=7;i++)
+    {
+        System.out.println(a[i]);
+    }
+	}
+}
